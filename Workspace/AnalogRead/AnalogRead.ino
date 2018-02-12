@@ -12,17 +12,16 @@ void setup() {
 
 // the loop function runs over and over again forever
 void loop() {
-  
+
   int sensorValue = analogRead(A0);
   Serial.print("light: ");
   Serial.println(sensorValue);
 
-  int percentage = map(sensorValue, 0, 1023, 0, 100);
-  
+  float percentage = map(sensorValue, 0, 1023, 100, 0);
+
   Serial.print("light percentage: ");
   Serial.print(percentage);
   Serial.println(" % ");
-  
+
   delay(1000);
 }
-
