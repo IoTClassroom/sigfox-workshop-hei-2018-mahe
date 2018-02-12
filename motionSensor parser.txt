@@ -1,0 +1,41 @@
+var payload,
+    light,
+    humidity,
+    motion,
+    parsedData = [],
+    obj = {};
+
+// First Byte
+var light = parseInt('0x'+payload.substring(0,2));
+//Second Byte
+var humidity = parseInt('0x'+payload.substring(2,4));
+//3rd
+var motion = parseInt('0x'+payload.substring(4,6));
+
+// Store objects in parsedData array
+obj = {};
+obj.key = 'light';
+obj.value = light;
+obj.type = 'number';
+obj.unit = '%';
+parsedData.push(obj);
+
+obj = {};
+obj.key = 'humidity';
+obj.value = humidity;
+obj.type = 'number';
+obj.unit = '%';
+parsedData.push(obj);
+
+obj = {};
+obj.key = 'motion';
+obj.type = 'string';
+if (motion == 01){
+    obj.value = "mouvement";
+} else {
+    obj.value = "no motion"
+}
+parsedData.push(obj);
+
+//console.log(parsedData);
+return parsedData;
